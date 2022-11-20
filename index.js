@@ -1,31 +1,43 @@
 const express = require('express');
 const mongoose = require('mongoose');
+
+const todoHandler = require('./routeHandler/todoHandler');
 const app = express();
 
 app.use(express.json());
 
 // database connection with mongoose
 
-mongoose.connect('mongodb://127.0.0.1:27017/test')
-.then(()=> console.log("Connection Successful"))
-.catch((err) => console.log(err));
+const connnetDb = async() =>{
+    try{
+        await mongoose.connect('mongodb://127.0.0.1:27017/test');
+        console.log("Connection Successfully");
+    } 
+    catch(err){
+       console.log(err)
+    } 
+     } 
+//application routes
 
-// function errorHandling(err, req, res, next){
-//     if(res.headersSent){
-//         return next(err);
-//     }
+app.use('/todo', todoHandler);
 
-//     res.status(500).json({error: err})
-// }
+function errorHandling(err, req, res, next){
+    if(res.headersSent){
+        return next(err);
+    }
 
-app.listen(3000, ()=>{
+    res.status(500).json({error: err})
+}
+
+app.listen(3000, async()=>{
 
     console.log("Server run at port 3000");
+    await connnetDb();
 
 });
 
 app.get('/', (req,res)=>{
 
-    res.send("Welcome to Homepage");
+    res.send("Welcome to Homepage for Express js");
 
 })
