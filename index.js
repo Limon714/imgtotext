@@ -6,9 +6,16 @@ app.use(express.json());
 
 // database connection with mongoose
 
-mongoose.connect('mongodb://127.0.0.1:27017/test')
-.then(()=> console.log("Connection Successful"))
-.catch((err) => console.log(err));
+const connnetDb = async() =>{
+    try{
+        await mongoose.connect('mongodb://127.0.0.1:27017/test');
+        console.log("Connection Successfully");
+    } 
+    catch(err){
+       console.log(err)
+    } 
+     } 
+
 
 // function errorHandling(err, req, res, next){
 //     if(res.headersSent){
@@ -18,14 +25,15 @@ mongoose.connect('mongodb://127.0.0.1:27017/test')
 //     res.status(500).json({error: err})
 // }
 
-app.listen(3000, ()=>{
+app.listen(3000, async()=>{
 
     console.log("Server run at port 3000");
+    await connnetDb();
 
 });
 
 app.get('/', (req,res)=>{
 
-    res.send("Welcome to Homepage");
+    res.send("Welcome to Homepage for Express js");
 
 })
