@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to Text Extractor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Image to Text Extractor</h1>
+        <p>Upload an image and extract text from it using OCR technology</p>
+        
+        <div class="upload-container">
+            <label for="imageUpload" class="upload-label">
+                <span class="upload-icon">📁</span>
+                <span>Choose an image or drag & drop</span>
+            </label>
+            <input type="file" id="imageUpload" accept="image/*" hidden>
+        </div>
+        
+        <div class="preview-container" id="previewContainer">
+            <h2>Image Preview</h2>
+            <div class="image-preview">
+                <img id="imagePreview" src="#" alt="Image Preview">
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button id="extractBtn" class="btn extract-btn" disabled>Extract Text</button>
+            <button id="copyBtn" class="btn copy-btn" disabled>Copy Text</button>
+            <button id="downloadBtn" class="btn download-btn" disabled>Download Text</button>
+        </div>
+        
+        <div class="result-container" id="resultContainer">
+            <h2>Extracted Text</h2>
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-bar" id="progressBar"></div>
+                <div class="progress-text" id="progressText">0%</div>
+            </div>
+            <div class="result-text">
+                <textarea id="extractedText" placeholder="Extracted text will appear here..." readonly></textarea>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Created with ❤️ using Tesseract.js OCR Engine</p>
+    </footer>
+
+    <!-- Tesseract.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
