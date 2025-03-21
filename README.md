@@ -1,2 +1,0 @@
-# mongoose
-CRUD Application
